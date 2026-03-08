@@ -6,3 +6,6 @@ app.egg-info
 htmlcov
 .cache
 .venv
+.agents/
+session-*.md
+skills-lock.json

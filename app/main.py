@@ -5,6 +5,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.api.main import api_router
 from app.core.config import settings
+from app.core.encryption import init_encryption
 
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -13,6 +14,9 @@ def custom_generate_unique_id(route: APIRoute) -> str:
 
 if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
     sentry_sdk.init(dsn=str(settings.SENTRY_DSN), enable_tracing=True)
+
+# Initialise AES-256 column-level encryption
+init_encryption(settings.ENCRYPTION_KEY)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

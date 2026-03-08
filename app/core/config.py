@@ -91,8 +91,13 @@ class Settings(BaseSettings):
         return bool(self.SMTP_HOST and self.EMAILS_FROM_EMAIL)
 
     EMAIL_TEST_USER: EmailStr = "test@example.com"
+    ENCRYPTION_KEY: str
+    MFA_ISSUER: str = "Bienestar"
+    MFA_TOKEN_EXPIRE_MINUTES: int = 5
+
     FIRST_SUPERUSER: EmailStr
     FIRST_SUPERUSER_PASSWORD: str
+    FIRST_SUPERUSER_USERNAME: str = "admin"
 
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == "changethis":
